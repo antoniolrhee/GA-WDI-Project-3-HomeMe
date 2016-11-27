@@ -13,15 +13,9 @@ var groupchatsController = require('../controllers/groupchats');
 var api_listingsController = require('../controllers/api_listings');
 
 router.route('/api/listings')
-  .get(api_listingsController.index);
-
-router.route('/api/listings')
-  .post(api_listingsController.create);
-
-router.route('/api/listings')
-  .delete(authenticatedUser, api_listingsController.destroy);
-
-router.route('/api/listings')
+  .get(api_listingsController.index)
+  .post(api_listingsController.create)
+  .delete(authenticatedUser, api_listingsController.destroy)
   .put(authenticatedUser, api_listingsController.edit);
 
 function authenticatedUser(req, res, next) {
