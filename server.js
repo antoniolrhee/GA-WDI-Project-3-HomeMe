@@ -24,18 +24,6 @@ require('./config/database');
 // configure passport
 require('./config/passport');
 
-// Michael's zillow code for map
-// var zillow = new Zillow(process.env.ZILLOW_KEY, {});
-//
-// zillow.get('GetRegionChildren', {
-//   'state': 'ca',
-//   'city': 'santa monica'
-// }).then(function(data) {
-//   // console.log(JSON.stringify(data, null, 2));
-//   console.log(data["response"]["list"]["region"][4]["latitude"]);
-//   console.log(data["response"]["list"]["region"][4]["longitude"]);
-// });
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -56,7 +44,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-//pushing image to aws for new listings 
+//pushing image to aws for new listings
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
