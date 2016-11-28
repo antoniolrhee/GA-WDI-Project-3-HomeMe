@@ -13,40 +13,38 @@
     <link rel="stylesheet" href="/assets/css/main.css" />
 </head>
 <body>
-    <!-- Wrapper -->
-    <div id="wrapper">
-      <%- include('./partials/navbar.ejs')  %>
-        <!-- Main -->
-            <div id="main">
-                <div class="inner">
-                    <section id="listingArticle" class="tiles">
-                      <% for(var i = 0; i < listings.length; i++) {%>
-                       <article class="style3">
-                         <span class="image">
-                           <img style="height: 280px;" src="<%= listings[i].imageurl %>" alt="" />
-                         </span>
-                         <a href="/listings/<%= listings[i]._id %>">
-                           <h2><%= listings[i].neighborhood %>
-                           </h2>
-                           <div class="content">
-                             <p><%= listings[i].formattedAddress %></p>
-                           </div>
-                         </a>
-                       </article>
-                      <% } %>
-                    </section>
-                </div>
-            </div>
-
-            <%- include('./partials/footer.ejs')  %>
-
+  <!-- Wrapper -->
+  <div id="wrapper">
+    <%- include('./partials/navbar.ejs')  %>
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+        <section id="listingArticle" class="tiles">
+          <% for(var i = 0; i < listings.length; i++) {%>
+           <article class="style3">
+             <span class="image">
+               <img style="height: 280px;" src="<%= listings[i].imageurl %>" alt="" />
+             </span>
+             <a href="/listings/<%= listings[i]._id %>">
+               <h2><%= listings[i].neighborhood %></h2>
+               <div class="content">
+                 <p><%= listings[i].formattedAddress %></p>
+               </div>
+             </a>
+           </article>
+          <% } %>
+        </section>
+      </div>
+    </div>
+    <%- include('./partials/footer.ejs')  %>
+  </div>
         <!-- Scripts -->
-        <script src="/assets/js/jquery.min.js"></script>
-        <script src="/assets/js/skel.min.js"></script>
-        <script src="/assets/js/util.js"></script>
-        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-        <script src="/assets/js/main.js"></script>
-        <script rel='javascript' src='/js/postedlisting.js'></script>
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/skel.min.js"></script>
+  <script src="/assets/js/util.js"></script>
+  <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+  <script src="/assets/js/main.js"></script>
+  <script rel='javascript' src='/js/postedlisting.js'></script>
 
 </body>
 
