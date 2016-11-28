@@ -6,19 +6,18 @@ $(document).ready(function() {
   }).then(
     function(jsonGroupchats) {
       // Iterate through our array of json groupchats
-      jsonGroupchats.forEach(function(jsonGroupchat) {
+      for(var i = 0; i < jsonGroupchats.length; i++) {
         $(chatroomList).prepend(
-          // $(`<li id=${jsonGroupchat._id}>${jsonGroupchat.chatName} - <a href="groupchats/${jsonGroupchat._id}">Enter Chatroom</a> <button onclick="deleteChatroom(this)" type="button" class="button special">X</button> </li>`)
 
-          $(`<div id=${jsonGroupchat._id} class="3u 12u$(xsmall)">
-              ${jsonGroupchat.chatName}
-              <input type="text" name="demo-name" class="passwordAttempt" value="" placeholder="Enter Password" /><br>
-              <a id="groupchats/${jsonGroupchat._id}">
-                <button onclick="checkPassword(this)" type="button" class="button special">Enter</button>
-              </a>
-            </div>`)
+          $(`<div id=${jsonGroupchats[i]._id} class="3u 12u$(xsmall)">
+          ${jsonGroupchats[i].chatName}
+          <input type="text" name="demo-name" id="passwordAttempt${[i]}" value="" placeholder="Enter Password" /><br>
+          <a id="/api/groupchats/${jsonGroupchats[i]._id}">
+          <button type="button" class="button special">Enter</button>
+          </a>
+          </div>`)
         );
-      });
+      }
     }
   );
 
@@ -51,17 +50,18 @@ $(document).ready(function() {
         }
       ).then(
         function(jsonGroupchat) {
-          $(chatroomList).prepend(
-            // $(`<li>${jsonGroupchat.chatName} - <a href="groupchats/${jsonGroupchat._id}">Enter Chatroom</a> <button onclick="deleteChatroom(this)" type="button" class="button special">X</button></li>`)
-
-            $(`<div id=${jsonGroupchat._id} class="3u 12u$(xsmall)">
-                ${jsonGroupchat.chatName}
-                <input type="text" name="demo-name" class="passwordAttempt" value="" placeholder="Enter Password" /><br>
-                <a id="groupchats/${jsonGroupchat._id}">
-                  <button onclick="checkPassword(this)" type="button" class="button special">Enter</button>
-                </a>
-              </div>`)
-          );
+          location.reload();
+          //
+          // $(chatroomList).prepend(
+          //
+          //   $(`<div id=${jsonGroupchat._id} class="3u 12u$(xsmall)">
+          //       ${jsonGroupchat.chatName}
+          //       <input type="text" name="demo-name" id="passwordAttempt0" value="" placeholder="Enter Password" /><br>
+          //       <a id="groupchats/${jsonGroupchat._id}">
+          //         <button onclick="checkPassword(this)" type="button" class="button special">Enter</button>
+          //       </a>
+          //     </div>`)
+          // );
         }
       );
     }
@@ -69,17 +69,24 @@ $(document).ready(function() {
 });
 
 function checkPassword() {
+  console.log(this);
+  console.log($(this).parent().prev().prev().val());
   $.ajax({
-    type: "GET",
-    url: "/api/groupchats"
+    type: "POST",
+    url: $(this).parent().attr('id'),
+    data: {
+      password: $(this).parent().prev().prev().val()
+    }
   }).then(
-    function(jsonGroupchats) {
+    function(data) {
       // Iterate through our array of json groupchats
-      jsonGroupchats.forEach(function(jsonGroupchat) {
-        if($('.passwordAttempt').val() == jsonGroupchat.chatPassword) {
-          location.href = `groupchats/${jsonGroupchat._id}`
-        }
-      });
+      if(data.correctRoom) {
+        location.href = data.correctRoom;
+      } else {
+        location.reload();
+      }
     }
   );
 }
+
+$('#chatroomList').on('click', 'button', checkPassword);
