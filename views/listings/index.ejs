@@ -1,18 +1,15 @@
 <!DOCTYPE HTML>
 <!--
-	Phantom by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+    Phantom by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-
 <head>
-    <title>home Me</title>
+    <title>home_Me</title>
+    <link rel="stylesheet" href="/css/navbar.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <meta charset="utf-8" />
@@ -22,121 +19,85 @@
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
-
 <body>
     <!-- Wrapper -->
     <div id="wrapper">
       <!-- Header -->
-      <header id="header">
-        <div class="inner">
-          <!-- Logo -->
-          <!-- <a href="index.html" class="logo">
-              <span class="symbol"><img src="images/logo.svg" alt="logo" /></span><span class="title">home Me</span>
-          </a> -->
-          <!-- Nav -->
-          <nav>
-              <ul>
-                  <li><a href="#menu"><%= user.name %></a></li>
-              </ul>
-          </nav>
-        </div>
-      </header>
-
-      <!-- Menu -->
-      <nav id="menu">
-        <h2><%= user.name %></h2>
-          <ul>
-            <li><a href="/listings">Search</a></li>
-            <li><a href="/listings/new">Post New Listing</a></li>
-            <li><a href="/groupchats">My Groups</a></li>
-            <li><a href="/logout">Logout</a></li>
-          </ul>
-      </nav>
-
-        <!-- Main -->
-        <div id="main">
-            <div class="inner">
-                <!-- <h1>search</h1> -->
-                <section>
-                    <div class="row">
-                        <div class="6u$ 12u$(medium)">
-
-                        </div>
-                    </div>
-                    <section>
-                        <form method="post" action="#">
-                            <div class="row uniform">
-                                <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="demo-name" id="city" value="" placeholder="city" />
-                                </div>
-                                <div class="6u$ 12u$(xsmall)">
-                                    <input type="text" name="demo-email" id="duration" value="" placeholder="duration" />
-                                </div>
-                                <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="demo-name" id="minPrice" value="" placeholder="minimum price" />
-                                </div>
-                                <div class="6u$ 12u$(xsmall)">
-                                    <input type="email" name="demo-email" id="maxPrice" value="" placeholder="maximum price" />
-                                </div>
-                                <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="demo-name" id="bedrooms" value="" placeholder="bedrooms" />
-                                </div>
-                                <div class="6u$ 12u$(xsmall)">
-                                    <input type="email" name="demo-email" id="bathrooms" value="" placeholder="bathrooms" />
-                                </div>
-                                <div class="6u 12u$(xsmall)">
-                                    <input type="text" name="demo-name" id="pets" value="" placeholder="pets" />
-                                </div>
-                                <div class="6u$ 12u$(xsmall)">
-                                    <input type="email" name="demo-email" id="furnished" value="" placeholder="furnished" />
-                                </div>
-
-
-                            </div>
-                        </form>
-                    </section>
-                    <div class="row">
-                        <div class="6u 12u$(medium)">
-                            <ul class="actions">
-                                <li><a href="#" class="button special" id="submitSearch">search</a></li>
-                            </ul>
-                        </div>
-                </section>
-                <div class="container" id="map"></div>
-
-                </div>
-            </div>
-
-            <div id="main">
-                <div class="inner">
-                    <section id="listingArticle" class="tiles">
-
-                    </section>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <footer id="footer">
-                <div class="inner">
-
-                    <section>
-                        <ul class="icons">
-                            <li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-                            <li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-                            <li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
-                            <li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
-                            <li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
-                        </ul>
-                    </section>
-                    <ul class="copyright">
-                        <li>&copy; Untitled. All rights reserved</li>
-                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                    </ul>
-                </div>
-            </footer>
-
-        </div>
-
+      <%- include('../partials/navbar.ejs')  %>
+      <!-- Main -->
+      <div id="main">
+          <div class="inner">
+              <!-- <h1>search</h1> -->
+              <section>
+                  <div class="row">
+                      <div class="6u$ 12u$(medium)">
+                      </div>
+                  </div>
+                  <section>
+                      <form method="post" action="#">
+                          <div class="row uniform">
+                              <div class="6u 12u$(xsmall)">
+                                  <input type="text" name="demo-name" id="city" value="" placeholder="city" />
+                              </div>
+                              <div class="6u$ 12u$(xsmall)">
+                                  <input type="text" name="demo-email" id="duration" value="" placeholder="duration" />
+                              </div>
+                              <div class="6u 12u$(xsmall)">
+                                  <input type="text" name="demo-name" id="minPrice" value="" placeholder="minimum price" />
+                              </div>
+                              <div class="6u$ 12u$(xsmall)">
+                                  <input type="email" name="demo-email" id="maxPrice" value="" placeholder="maximum price" />
+                              </div>
+                              <div class="6u 12u$(xsmall)">
+                                  <input type="text" name="demo-name" id="bedrooms" value="" placeholder="bedrooms" />
+                              </div>
+                              <div class="6u$ 12u$(xsmall)">
+                                  <input type="email" name="demo-email" id="bathrooms" value="" placeholder="bathrooms" />
+                              </div>
+                              <div class="6u 12u$(xsmall)">
+                                  <input type="text" name="demo-name" id="pets" value="" placeholder="pets" />
+                              </div>
+                              <div class="6u$ 12u$(xsmall)">
+                                  <input type="email" name="demo-email" id="furnished" value="" placeholder="furnished"/>
+                              </div>
+                          </div>
+                      </form>
+                  </section>
+                  <div class="row">
+                      <div class="6u 12u$(medium)">
+                          <ul class="actions">
+                              <li><a href="#" class="button special" id="submitSearch">search</a></li>
+                          </ul>
+                      </div>
+              </section>
+              <div class="container" id="map"></div>
+                  </div>
+          </div>
+          <div id="main">
+              <div class="inner">
+                  <section id="listingArticle" class="tiles">
+                  </section>
+              </div>
+          </div>
+          <!-- Footer -->
+          <footer id="footer">
+              <div class="inner">
+                  <section>
+                      <ul class="icons">
+                          <li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+                          <li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+                          <li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                          <li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+                          <li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+                      </ul>
+                  </section>
+                  <ul class="copyright">
+                      <li>&copy; Untitled. All rights reserved</li>
+                      <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                  </ul>
+              </div>
+          </footer>
+      </div>
         <!-- Scripts -->
         <script src="/assets/js/jquery.min.js"></script>
         <script src="/assets/js/skel.min.js"></script>
@@ -146,7 +107,5 @@
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjhPiDnmTAQy95uLaqIr9ONbyAVMC3myw&callback=initMap">
         </script>
         <script rel='javascript' src='/js/listings.js'></script>
-
 </body>
-
 </html>

@@ -13,6 +13,14 @@
   padding: 5px;
   margin: 100px 0 0 0;
 }
+.welcomebackground{
+  background-color: #64ADA2;
+}
+.welcomeh1{
+  color: white;
+  font-size: 67px;
+}
+
 
 /* Reset */
 
@@ -2886,8 +2894,8 @@
 
 				#header .logo .symbol img {
 					display: block;
-					width: 2em;
-					height: 2em;
+					width: 35em;
+					height: 15.5em;
 				}
 
 		#header nav {

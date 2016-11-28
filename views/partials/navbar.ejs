@@ -1,31 +1,27 @@
-<nav style="background-color: white;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <img alt="Logo" src="">
-      </a>
-    </div>
-    <ul class= "nav nav-tabs nav-justified">
-    <p class="navbar-text navbar-right">
-      <% if (user) { %>
-        Hello, <%= user.name %>
-        <br>
-        <li>
-        <a href="/listings">Search</a>
-      </li>
-        <li>
-        <a href="/listings/new">Post New Listing</a>
-      </li>
-      <li>
-        <a href="/groupchats">My Groups</a>
-      </li>
-    </p>
-    <p class="navbar-text navbar-right">
-      <a href="/logout">Logout</a>
-      <% } else { %>
-      <a href="/auth/google">Login with Google</a>
-      <% } %>
-
-  </ul>
+<header id="header">
+  <div class="inner">
+    <!-- Logo -->
+    <!-- Nav -->
+    <nav>
+      <div class="logo">
+        <span class="symbol"><img id="navpic" src="/assets/images/home_Me.png" alt="logo" /></span>
+      </div>
+        <ul>
+          <li style="padding: 20px"><%= user.name %></li>
+          <li><a href="#menu"><%= user.name %></a></li>
+        </ul>
+    </nav>
   </div>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+  <h2><%= user.name %></h2>
+    <ul>
+      <li><a href="/listings">Search</a></li>
+      <li><a href="/listings/new">Post New Listing</a></li>
+      <li><a href="/listings/postedlistings">My Properties</a></li>
+      <li><a href="/groupchats">My Groups</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
 </nav>

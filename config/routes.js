@@ -2,7 +2,6 @@ var express = require('express');
 var passport = require('passport');
 var router = express.Router();
 var Listing = require('../models/listing');
-
 // require controllers
 var welcomeController = require('../controllers/welcome');
 var listingsController = require('../controllers/listings');
@@ -11,20 +10,18 @@ var mylistingsController = require('../controllers/mylistings');
 var postedlistingsController = require('../controllers/postedlistings');
 var groupchatsController = require('../controllers/groupchats');
 var api_listingsController = require('../controllers/api_listings');
-
 router.route('/api/listings')
   .get(api_listingsController.index)
   .post(api_listingsController.create)
   .delete(authenticatedUser, api_listingsController.destroy)
   .put(authenticatedUser, api_listingsController.edit);
-
+  
 function authenticatedUser(req, res, next) {
   // if user authenticated, continue to next execution
   if(req.isAuthenticated()) return next();
   // otherwise always redirect to root route
   res.redirect('/');
 }
-
 /* GET root path. */
 router.route('/')
   .get(welcomeController.welcome)
@@ -46,8 +43,6 @@ router.route('/listings/favorites/:id')
 // route to listings/id
 router.route('/listings/:id')
   .get(authenticatedUser, listingsController.show)
-
-
 // route to create a groupchat
 router.route('/groupchats')
   .get(authenticatedUser, groupchatsController.home)
@@ -60,18 +55,14 @@ router.route('/api/groupchats')
   .post(groupchatsController.create)
 router.route('/api/groupchats/:id')
   .delete(groupchatsController.destroy)
-
 router.route('/api/groupchats/:id/messages')
   .get(messagesController.index)
   .post(messagesController.create)
-
-
 // google OAuth login route
 router.get('/auth/google', passport.authenticate(
   'google',
   {scope: ['profile', 'email']}
 ));
-
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
@@ -79,11 +70,11 @@ router.get('/oauth2callback', passport.authenticate(
     failureRedirect: '/'
   }
 ));
-
 // OAuth logout router
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
+
 
 module.exports = router;
