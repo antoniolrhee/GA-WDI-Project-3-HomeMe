@@ -18,7 +18,11 @@
 }
 .welcomeh1{
   color: white;
-  font-size: 67px;
+  font-size: 57px;
+}
+.welcomep{
+  color: white;
+  font-size: 17px;
 }
 
 
@@ -3301,6 +3305,14 @@
 
 		@media screen and (max-width: 736px) {
 
+      #navpic {
+        position: relative;
+        max-height: 3em;
+        max-width: 6em;
+        bottom: 18px;
+        right: 20px;
+      }
+
 			#footer {
 				padding: 3em 0 1em 0 ;
 			}
@@ -3334,7 +3346,14 @@
 		}
 
 		@media screen and (max-width: 480px) {
-
+      
+      #navpic {
+        position: relative;
+        max-height: 3em;
+        max-width: 6em;
+        bottom: 18px;
+        right: 20px;
+      }
 			#footer > .inner .copyright {
 				margin-top: 3em;
 			}

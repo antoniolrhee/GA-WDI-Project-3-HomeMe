@@ -1,8 +1,7 @@
 .logo {
-  float: left;
-  padding-top: 15px;
-  padding-right: 1400px;
-
+  position: absolute;
+  top: 40px;
+  left: 40px;
 }
 #navpic {
   max-width: 8em;

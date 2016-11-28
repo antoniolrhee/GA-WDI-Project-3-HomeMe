@@ -10,87 +10,93 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="/css/navbar.css"/>
+    <link rel='stylesheet' href='/css/updatelisting.css'/>
     <link rel="stylesheet" href="/assets/css/main.css" />
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
     <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
   </head>
   <body>
-    <%= listing.formattedAddress %>
-    <div class="6u 12u$(medium)">
-    </div>
     <!-- Wrapper -->
-        <div id="wrapper">
-
-            <!-- Header -->
-            <header id="header">
-                <div class="inner">
-
-                    <!-- Logo -->
-                    <!-- <a href="index.html" class="logo">
-                        <span class="symbol"><img src="images/logo.svg" alt="logo" /></span><span class="title">home Me</span>
-                    </a> -->
-
-                    <!-- Nav -->
-                    <nav>
-                        <ul>
-                            <li><a href="#menu">Menu</a></li>
-                        </ul>
-                    </nav>
-
-                </div>
-            </header>
-
-            <section>
-                <form method="post" action="#">
-                    <div class="row uniform">
-                        <div class="6u 12u$(xsmall)">
-                            <input type="text" name="demo-name" id="city" value="<%= listing.city %>" placeholder="city" />
-                        </div>
-                        <div class="6u 12u$(xsmall)">
-                            <input type="text" name="demo-name" id="state" value="<%= listing.state %>" placeholder="state" />
-                        </div>
-                        <div class="6u 12u$(xsmall)">
-                            <input type="text" name="demo-name" id="address" value="<%= listing.address %>" placeholder="address" />
-                        </div>
-                        <div class="6u 12u$(xsmall)">
-                            <input type="text" name="demo-name" id="zipcode" value="" placeholder="<%= listing.zipcode %>" />
-                        </div>
-                        <div class="6u 12u$(xsmall)">
-                            <input type="text" name="demo-name" id="price" value="" placeholder="<%= listing.price %>" />
-                        </div>
-                        <div class="6u 12u$(xsmall)">
-                            <input type="text" name="demo-name" id="bedrooms" value="" placeholder="<%= listing.bedrooms %>" />
-                        </div>
-                        <div class="6u$ 12u$(xsmall)">
-                            <input type="email" name="demo-email" id="bathrooms" value="" placeholder="<%= listing.bathrooms %>" />
-                        </div>
-                        <div class="6u$ 12u$(xsmall)">
-                            <input type="text" name="demo-email" id="duration" value="" placeholder="<%= listing.duration %>" />
-                        </div>
-                        <div class="6u 12u$(xsmall)">
-                            <input type="text" name="demo-name" id="pets" value="" placeholder="<%= listing.pets %>" />
-                        </div>
-                        <div class="6u$ 12u$(xsmall)">
-                            <input type="email" name="demo-email" id="furnished" value="" placeholder="<%= listing.furnished %>" />
-                        </div>
-
-
+    <div id="wrapper">
+      <!-- Header -->
+      <%- include('../partials/navbar.ejs')  %>
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+              <!-- <h1>search</h1> -->
+              <section>
+                <div class="row">
+                    <div id="listingHead" class="6u$ 12u$(medium)"><br>Edit Information for: <br>
+                      <%= listing.formattedAddress %>
                     </div>
-                </form>
-            </section>
-      <input type="hidden" id="imageurl" name="imageurl" value="/images/default.png">
-      <button type="button" class="btn btn-primary" id="submitListing">Submit</button>
-      <ul class="actions">
-          <li><a href="#" class="button special" id="delete">delete</a></li>
-      </ul>
-    </form>
-    <input type="file" id="file-input">
-      <p id="status">Please select a file</p>
-      <img style='width:100px'id="preview" src="">
-
+                </div>
+                  <section>
+                      <form method="post" action="#">
+                            <div class="row uniform">
+                                <div class="6u 12u$(xsmall)">
+                                    <input type="text" name="demo-name" id="price" value="" placeholder="Price: <%= listing.price %>" />
+                                </div>
+                                <div class="6u$ 12u$(xsmall)">
+                                  <input type="text" name="demo-email" id="duration" value="" placeholder="Duration: <%= listing.duration %>" />
+                                </div>
+                                <div class="6u 12u$(xsmall)">
+                                    <input type="text" name="demo-name" id="bedrooms" value="" placeholder="Bedrooms: <%= listing.bedrooms %>" />
+                                </div>
+                                <div class="6u$ 12u$(xsmall)">
+                                    <input type="email" name="demo-email" id="bathrooms" value="" placeholder="Bathrooms: <%= listing.bathrooms %>" />
+                                </div>
+                                <div class="6u 12u$(xsmall)">
+                                    <input type="text" name="demo-name" id="pets" value="" placeholder="Pets: <%= listing.pets %>" />
+                                </div>
+                                <div class="6u$ 12u$(xsmall)">
+                                    <input type="email" name="demo-email" id="furnished" value="" placeholder="Furnished: <%= listing.furnished %>" />
+                                </div>
+                          </div>
+                      </form>
+                  </section>
+                  <div class="row">
+                      <div class="6u 12u$(medium)">
+                        <input type="hidden" id="imageurl" name="imageurl" value="/assets/images/default.png">
+                        <input type="file" name="file" id="file-input" class="inputfile" />
+                        <label class="button icon fa-upload" for="file-input">Choose a file</label>
+                        <br>
+                        <img style='width:100px'id="preview" src="/assets/images/default.png">
+                        <br>
+                        <br>
+                        <ul class="actions">
+                          <li><a href="#" class="button special" id="submitListing">Edit</a></li>
+                          <li><a href="#" class="button special" id="delete">delete</a>
+                          </li>
+                        </ul>
+                      </div>
+                  </div>
+              </section>
+        </div>
+      </div>
+          <!-- Footer -->
+          <footer id="footer">
+              <div class="inner">
+                  <section>
+                      <ul class="icons">
+                          <li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+                          <li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+                          <li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                          <li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+                          <li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+                      </ul>
+                  </section>
+                  <ul class="copyright">
+                      <li>&copy; Untitled. All rights reserved</li>
+                      <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                  </ul>
+              </div>
+          </footer>
+      </div>
+    <script rel='javascript' src='/js/updatelisting.js'>
+    </script>
     <script src="/assets/js/jquery.min.js"></script>
     <script src="/assets/js/skel.min.js"></script>
     <script src="/assets/js/util.js"></script>
@@ -104,6 +110,7 @@
     console.log('HELLO LISTING ID IS ', listingId);
 
     $('#delete').click(function(event) {
+      alert('Are you sure?')
       $.ajax({
           url: "/api/listings",
           type: 'DELETE',
@@ -113,8 +120,6 @@
       })
 
     });
-    </script>
-    <script rel='javascript' src='/js/updatelisting.js'>
     </script>
   </body>
 </html>
