@@ -34,8 +34,6 @@ router.route('/listings')
 // route to post a new listing
 router.route('/listings/new')
   .get(authenticatedUser, listingsController.newListing)
-
-
 //route to favorited listings
 router.route('/listings/favorites')
   .get(authenticatedUser, mylistingsController.index)

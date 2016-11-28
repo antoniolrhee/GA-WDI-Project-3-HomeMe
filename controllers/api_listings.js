@@ -88,15 +88,10 @@ function destroy(req, res, next) {
 };
 
 function edit(req, res, next) {
-  console.log('here is body', req.body)
   var id = { "_id": req.body.id }
-  console.log('searching for: ', id);
   Listing.findOne(id, function(err, listing) {
-    console.log('put ->', listing);
-    console.log('req body ->', req.body);
     if (err) throw err
     else if (req.user._id.toString() == listing.createdBy) {
-      console.log('OKAY GOING IN FOR UPDATE');
       Listing.findOneAndUpdate({_id: req.body.id}, req.body, function(err) {
         if (err) console.log('update failed -> ', err);
         res.send(204);

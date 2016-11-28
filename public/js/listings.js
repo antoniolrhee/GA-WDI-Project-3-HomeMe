@@ -11,7 +11,8 @@ function initMap() {
   map = new google.maps.Map($('#map')[0], {
     zoom: 12,
     center: center,
-    mapTypeId: 'roadmap'
+    mapTypeId: 'roadmap',
+    scrollwheel: true
   });
 
   $('#submitSearch').click(function(event) {
