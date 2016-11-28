@@ -20,7 +20,7 @@ function authenticatedUser(req, res, next) {
 
 router.route('/api/listings')
   .get(authenticatedUser, api_listingsController.index)
-  .post(api_listingsController.create)
+  .post(authenticatedUser, api_listingsController.create)
   .delete(authenticatedUser, api_listingsController.destroy)
   .put(authenticatedUser, api_listingsController.edit)
 /* GET root path. */

@@ -11,7 +11,8 @@ function initMap() {
   map = new google.maps.Map($('#map')[0], {
     zoom: 12,
     center: center,
-    mapTypeId: 'roadmap'
+    mapTypeId: 'roadmap',
+    scrollwheel: true
   });
 
   $('#submitSearch').click(function(event) {
@@ -76,7 +77,7 @@ function initMap() {
       console.log(searchResult.length);
       for (var i = 0; i < searchResult.length; i++) {
         $('#listingArticle').append(
-         `<article class="style3"><span class="image"><img style="height: 280px;" src="${searchResult[i].imageurl}" alt="" /></span><a href=/listings/${searchResult[i]._id}><h2>${searchResult[i].neighborhood}</h2><div class="content"><p>${searchResult[i].formattedAddress}</p></div></a></article>`
+         `<article class="style3"><span class="image"><img style="height: 280px;" src="${searchResult[i].imageurl}" alt="" /></span><a><h2>${searchResult[i].neighborhood}</h2><div class="content"><p>${searchResult[i].formattedAddress}</p><h1>$${searchResult[i].price} / month</h1><h2>bedrooms: ${searchResult[i].bedrooms}</h2><h2>bathrooms: ${searchResult[i].bathrooms}</h2></div></a></article>`
        )
       };
       $('body,html').animate({scrollTop: 1150}, 1150);
