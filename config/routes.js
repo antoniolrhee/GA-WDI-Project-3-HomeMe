@@ -55,10 +55,10 @@ router.route('/api/groupchats')
   .get(authenticatedUser, groupchatsController.index)
   .post(groupchatsController.create)
 router.route('/api/groupchats/:id')
-  .post(authenticatedUser, groupchatsController.checkPass)
-router.route('/api/groupchats/:id/messages')
   .get(authenticatedUser, messagesController.index)
-  .post(messagesController.create)
+  // .post(messagesController.create)
+  // there is an issue because two post requests are sharing the same route. the idea was to try to use the id from the params in order to relate it to a message that is being created. mike's help on groupchats.js and checkPass function helped get some ideas going. the createdBy attr will help too. Stretch goals
+  .post(authenticatedUser, groupchatsController.checkPass)
 // google OAuth login route
 router.get('/auth/google', passport.authenticate(
   'google',

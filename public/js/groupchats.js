@@ -30,7 +30,7 @@ $(document).ready(function() {
       chatPassword: $('#chatroomPassword').val().replace(/\s/g, '')
     }
     if($('#chatroomName').val().replace(/\s/g, '') == "" || $('#chatroomPassword').val().replace(/\s/g, '') == "") {
-      $('#requiredFields').modal('show');
+      alert('Missing required fields');
     } else {
       // Use AJAX to add the new groupchat to our db
       $.ajax({
@@ -51,17 +51,6 @@ $(document).ready(function() {
       ).then(
         function(jsonGroupchat) {
           location.reload();
-          //
-          // $(chatroomList).prepend(
-          //
-          //   $(`<div id=${jsonGroupchat._id} class="3u 12u$(xsmall)">
-          //       ${jsonGroupchat.chatName}
-          //       <input type="text" name="demo-name" id="passwordAttempt0" value="" placeholder="Enter Password" /><br>
-          //       <a id="groupchats/${jsonGroupchat._id}">
-          //         <button onclick="checkPassword(this)" type="button" class="button special">Enter</button>
-          //       </a>
-          //     </div>`)
-          // );
         }
       );
     }

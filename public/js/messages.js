@@ -9,7 +9,7 @@ $(function() {
 	// Grab all messages from our db
   $.ajax({
     type: "GET",
-    url: "/api/groupchats/:id/messages"
+    url: "/api/groupchats/:id"
   }).then(
     function(jsonMessages) {
       // Iterate through our array of json messages
@@ -32,7 +32,7 @@ $(function() {
 		// Use AJAX to add the new message to our db
 		$.ajax({
 			method: "POST",
-			url: "/api/groupchats/:id/messages",
+			url: "/api/groupchats/:id",
 			data: message
 		}).then(
 			function(jsonMessage) {
