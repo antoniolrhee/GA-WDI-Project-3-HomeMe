@@ -5,5 +5,5 @@ module.exports = {
 };
 
 function welcome(req, res, next) {
-  res.render('welcome.ejs', { title: 'HomeMe', user: req.user });
+  res.render('welcome.ejs', { title: 'home_Me', user: req.user });
 };

@@ -1,23 +1,3 @@
-// Define function that will get executed when the X is clicked on.
-function deleteChatroom(evt) {
-  console.log('clicked')
-  // Grab the parent li of the span
-  var html = $(this).parent();
-  // Get the id of the groupchat we are deleting
-  var id = html.id;
-
-  // Use AJAX to delete the groupchat from our db
-  $.ajax({
-    type: "DELETE",
-    url: "/api/groupchats/" + encodeURIComponent(id)
-  }).then(
-    // Use jquery to remove it from the DOM
-    function() {
-      html.remove();
-    }
-  );
-}
-
 $(document).ready(function() {
   // Grab all groupchats from our db
   $.ajax({
@@ -27,8 +7,16 @@ $(document).ready(function() {
     function(jsonGroupchats) {
       // Iterate through our array of json groupchats
       jsonGroupchats.forEach(function(jsonGroupchat) {
-        $(chatroomList).append(
-          $(`<li id=${jsonGroupchat._id}>${jsonGroupchat.chatName} - <a href="groupchats/${jsonGroupchat._id}">Enter Chatroom</a> <button onclick="deleteChatroom(this)" type="button" class="btn btn-danger">X</button> </li>`)
+        $(chatroomList).prepend(
+          // $(`<li id=${jsonGroupchat._id}>${jsonGroupchat.chatName} - <a href="groupchats/${jsonGroupchat._id}">Enter Chatroom</a> <button onclick="deleteChatroom(this)" type="button" class="button special">X</button> </li>`)
+
+          $(`<div id=${jsonGroupchat._id} class="3u 12u$(xsmall)">
+              ${jsonGroupchat.chatName}
+              <input type="text" name="demo-name" class="passwordAttempt" value="" placeholder="Enter Password" /><br>
+              <a id="groupchats/${jsonGroupchat._id}">
+                <button onclick="checkPassword(this)" type="button" class="button special">Enter</button>
+              </a>
+            </div>`)
         );
       });
     }
@@ -63,11 +51,35 @@ $(document).ready(function() {
         }
       ).then(
         function(jsonGroupchat) {
-          $(chatroomList).append(
-            $(`<li>${jsonGroupchat.chatName} - <a href="groupchats/${jsonGroupchat._id}">Enter Chatroom</a> <button onclick="deleteChatroom(this)" type="button" class="btn btn-danger">X</button></li>`)
+          $(chatroomList).prepend(
+            // $(`<li>${jsonGroupchat.chatName} - <a href="groupchats/${jsonGroupchat._id}">Enter Chatroom</a> <button onclick="deleteChatroom(this)" type="button" class="button special">X</button></li>`)
+
+            $(`<div id=${jsonGroupchat._id} class="3u 12u$(xsmall)">
+                ${jsonGroupchat.chatName}
+                <input type="text" name="demo-name" class="passwordAttempt" value="" placeholder="Enter Password" /><br>
+                <a id="groupchats/${jsonGroupchat._id}">
+                  <button onclick="checkPassword(this)" type="button" class="button special">Enter</button>
+                </a>
+              </div>`)
           );
         }
       );
     }
   });
 });
+
+function checkPassword() {
+  $.ajax({
+    type: "GET",
+    url: "/api/groupchats"
+  }).then(
+    function(jsonGroupchats) {
+      // Iterate through our array of json groupchats
+      jsonGroupchats.forEach(function(jsonGroupchat) {
+        if($('.passwordAttempt').val() == jsonGroupchat.chatPassword) {
+          location.href = `groupchats/${jsonGroupchat._id}`
+        }
+      });
+    }
+  );
+}

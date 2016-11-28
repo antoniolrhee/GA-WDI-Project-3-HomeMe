@@ -10,18 +10,19 @@ var mylistingsController = require('../controllers/mylistings');
 var postedlistingsController = require('../controllers/postedlistings');
 var groupchatsController = require('../controllers/groupchats');
 var api_listingsController = require('../controllers/api_listings');
-router.route('/api/listings')
-  .get(api_listingsController.index)
-  .post(api_listingsController.create)
-  .delete(authenticatedUser, api_listingsController.destroy)
-  .put(authenticatedUser, api_listingsController.edit);
-  
+
 function authenticatedUser(req, res, next) {
   // if user authenticated, continue to next execution
   if(req.isAuthenticated()) return next();
   // otherwise always redirect to root route
   res.redirect('/');
 }
+
+router.route('/api/listings')
+  .get(authenticatedUser, api_listingsController.index)
+  .post(authenticatedUser, api_listingsController.create)
+  .delete(authenticatedUser, api_listingsController.destroy)
+  .put(authenticatedUser, api_listingsController.edit)
 /* GET root path. */
 router.route('/')
   .get(welcomeController.welcome)
@@ -53,10 +54,8 @@ router.route('/groupchats/:id')
 router.route('/api/groupchats')
   .get(authenticatedUser, groupchatsController.index)
   .post(groupchatsController.create)
-router.route('/api/groupchats/:id')
-  .delete(groupchatsController.destroy)
 router.route('/api/groupchats/:id/messages')
-  .get(messagesController.index)
+  .get(authenticatedUser, messagesController.index)
   .post(messagesController.create)
 // google OAuth login route
 router.get('/auth/google', passport.authenticate(

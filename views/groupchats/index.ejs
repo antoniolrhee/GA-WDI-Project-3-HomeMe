@@ -1,56 +1,69 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <%- include('../partials/head') %>
-    <script rel="javascript" src="/js/groupchats.js"></script>
+    <title>home_Me</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='/css/newlisting.css'/>
+    <link rel='stylesheet' href='/css/navbar.css'/>
+    <link rel="stylesheet" href="/assets/css/main.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <form class="form-inline">
-      <div class="form-group">
-        <input type="text" class="form-control" id="chatroomName" placeholder="Chatroom Name">
-        <input type="text" class="form-control" id="chatroomPassword" placeholder="Chatroom Password">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <%- include('../partials/navbar.ejs')  %>
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+          <section>
+            <div class="row">
+              <div class="6u$ 12u$(medium)"></div>
+            </div>
+            <section>
+              <form method="post" action="#">
+                <div id="chatroomList" class="row uniform">
+                  <div class="6u 12u$(xsmall)">
+                    <input type="text" name="demo-name" id="chatroomName" value="" placeholder="Chatroom Name" />
+                  </div>
+                  <div class="6u 12u$(xsmall)">
+                    <input type="text" name="demo-name" id="chatroomPassword" value="" placeholder="Chatroom Password" />
+                  </div>
+                </div>
+              </form>
+            </section>
+            <div class="row">
+              <div class="6u 12u$(medium)">
+                <ul class="actions">
+                  <li><a href="#" class="button special" id="createChat">Create Chatroom</a></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
-      <button type="submit" id="createChat" class="btn btn-default">Create Chatroom</button>
-    </form>
-
-    <div class="modal fade" id="requiredFields">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <p>Missing Required Fields</p>
-          </div><!-- modal-header -->
-          <div class="modal-body">
-            <p>Chatrooms require both a name and a password.</p>
-          </div><!-- modal-body -->
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-          </div><!-- modal-footer -->
-        </div><!-- modal-content -->
-      </div><!-- modal-dialog -->
-    </div><!-- modal fade -->
-
-    <div class="modal fade" id="enterPassword">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <p>Enter this chatroom's password</p>
-          </div><!-- modal-header -->
-          <div class="modal-body">
-            <input type="text" class="form-control" id="passwordAttempt" placeholder="Chatroom Password">
-          </div><!-- modal-body -->
-          <div class="modal-footer">
-            <button id="enterAttempt" type="button" class="btn btn-primary" data-dismiss="modal">Enter Chatroom</button>
-          </div><!-- modal-footer -->
-        </div><!-- modal-content -->
-      </div><!-- modal-dialog -->
-    </div><!-- modal fade -->
-
-    <h3>Chatrooms</h3>
-    <ul id="chatroomList">
-
-    </ul>
-
+        <!-- Footer -->
+        <footer id="footer">
+          <div class="inner">
+            <section>
+              <ul class="icons">
+                <li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+              </ul>
+            </section>
+            <ul class="copyright">
+              <li>&copy; Untitled. All rights reserved</li>
+              <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+          </div>
+        </footer>
+    </div>
+    <!-- Scripts -->
+    <script rel="javascript" src="/js/groupchats.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/skel.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
   </body>
 </html>

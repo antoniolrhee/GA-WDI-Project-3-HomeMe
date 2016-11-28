@@ -14,12 +14,8 @@ $(function() {
     function(jsonMessages) {
       // Iterate through our array of json messages
 			jsonMessages.forEach(function(jsonMessage) {
-				if($('#passwordAttempt').val() == jsonGroupchat.chatPassword) {
 					// Create an html element for the single message
 					$messages.append($('<li>').text(`${jsonMessage.username}: ${jsonMessage.message}`));
-				} else {
-					location.href = "/groupchats"
-				}
 			});
     }
   );
@@ -29,7 +25,7 @@ $(function() {
 		// Stop the default behavior from clicking on the submit button.
 		evt.preventDefault();
 		var message = {
-			username: $('span').attr('id'),
+			username: $('.spanTag').attr('id'),
 			message: $m.val()
 		}
 
@@ -54,7 +50,7 @@ $(function() {
 	});
 
 	$form.submit(function(){
-		socket.emit('chat message', (`${$('span').attr('id')}: ${$m.val()}`));
+		socket.emit('chat message', (`${$('.spanTag').attr('id')}: ${$m.val()}`));
 		$m.val('');
 		return false;
 	});
