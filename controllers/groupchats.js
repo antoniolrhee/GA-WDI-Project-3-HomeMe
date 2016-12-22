@@ -34,19 +34,13 @@ function create(req, res, next) {
 }
 
 function checkPass(req, res, next) {
+  // this function grabs the groupchat json object which contains the chatPassword. json object is sent to the frontend thru a get req and over there a function checks for password match
   var id = req.params.id;
-  var password = req.body.password;
   console.log(id);
-  console.log(password);
   Groupchat.findById(id, function(err, groupchat) {
     if (err) throw err;
 
-    if(password == groupchat.chatPassword) {
-      console.log('password matches');
-      res.json({ correctRoom: '/groupchats/' + id })
-    } else {
-      console.log('wrong password');
-      res.json({ correctRoom: false })
-    }
+    console.log(groupchat.chatPassword);
+    res.json(groupchat)
   });
 }

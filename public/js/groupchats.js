@@ -59,21 +59,15 @@ $(document).ready(function() {
 
 function checkPassword() {
   console.log(this);
+  var attempt = $(this).parent().prev().prev().val();
   console.log($(this).parent().prev().prev().val());
   $.ajax({
-    type: "POST",
+    // uses a get req; grabs json from api and checks that its password matches the var attempt above.
+    type: "GET",
     url: $(this).parent().attr('id'),
-    data: {
-      password: $(this).parent().prev().prev().val()
-    }
   }).then(
     function(data) {
-      // Iterate through our array of json groupchats
-      if(data.correctRoom) {
-        location.href = data.correctRoom;
-      } else {
-        location.reload();
-      }
+      (attempt == data.chatPassword) ? location.href = '/groupchats/' + data._id : location.reload();
     }
   );
 }
