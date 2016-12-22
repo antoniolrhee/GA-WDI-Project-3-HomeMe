@@ -11,7 +11,7 @@ $(document).ready(function() {
 
           $(`<div id=${jsonGroupchats[i]._id} class="3u 12u$(xsmall)">
           ${jsonGroupchats[i].chatName}
-          <input type="text" name="demo-name" id="passwordAttempt${[i]}" value="" placeholder="Enter Password" /><br>
+          <input type="password" name="demo-name" id="passwordAttempt${[i]}" value="" placeholder="Enter Password" /><br>
           <a id="/api/groupchats/${jsonGroupchats[i]._id}">
           <button type="button" class="button special">Enter</button>
           </a>
