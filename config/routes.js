@@ -56,9 +56,9 @@ router.route('/api/groupchats')
   .post(groupchatsController.create)
 router.route('/api/groupchats/:id')
   .get(authenticatedUser, groupchatsController.checkPass)
+  .post(messagesController.create)
 router.route('/api/groupchats/:id/messages')
   .get(authenticatedUser, messagesController.index)
-  .post(messagesController.create)
 // google OAuth login route
 router.get('/auth/google', passport.authenticate(
   'google',
