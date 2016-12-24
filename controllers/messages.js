@@ -3,7 +3,7 @@ var Groupchat = require('../models/groupchat');
 
 module.exports = {
   index: index,
-  create: create,
+  create: create
 }
 
 function index(req, res, next) {
@@ -16,8 +16,6 @@ function index(req, res, next) {
 
 function create(req, res, next) {
   var newMessage = new Message(req.body);
-  console.log(req.url)
-  // newMessage.chat =
   newMessage.save(function(err, savedMessage) {
     if (err) next (err);
 

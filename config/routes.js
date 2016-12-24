@@ -40,7 +40,7 @@ router.route('/listings/postedlistings')
   .get(authenticatedUser, postedlistingsController.index)
 // posts listings to favorited listings array
 router.route('/listings/favorites/:id')
-  .post(mylistingsController.addFaves)
+  .post(authenticatedUser, mylistingsController.addFaves)
 // route to listings/id
 router.route('/listings/:id')
   .get(authenticatedUser, listingsController.show)
@@ -53,12 +53,12 @@ router.route('/groupchats/:id')
 // api for groupchats
 router.route('/api/groupchats')
   .get(authenticatedUser, groupchatsController.index)
-  .post(groupchatsController.create)
+  .post(authenticatedUser, groupchatsController.create)
 router.route('/api/groupchats/:id')
   .get(authenticatedUser, groupchatsController.checkPass)
-  .post(messagesController.create)
-router.route('/api/groupchats/:id/messages')
+router.route('/api/messages')
   .get(authenticatedUser, messagesController.index)
+  .post(authenticatedUser, messagesController.create)
 // google OAuth login route
 router.get('/auth/google', passport.authenticate(
   'google',

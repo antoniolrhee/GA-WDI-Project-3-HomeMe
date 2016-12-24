@@ -9,13 +9,15 @@ $(function() {
 	// Grab all messages from our db
   $.ajax({
     type: "GET",
-    url: "/api/groupchats/:id/messages"
+    url: "/api/messages"
   }).then(
     function(jsonMessages) {
       // Iterate through our array of json messages
 			jsonMessages.forEach(function(jsonMessage) {
+				if(jsonMessage.belongsTo == window.location.pathname.slice(12)) {
 					// Create an html element for the single message
 					$messages.append($('<li>').text(`${jsonMessage.username}: ${jsonMessage.message}`));
+				}
 			});
     }
   );
@@ -25,6 +27,7 @@ $(function() {
 		// Stop the default behavior from clicking on the submit button.
 		evt.preventDefault();
 		var message = {
+			belongsTo: window.location.pathname.slice(12),
 			username: $('.spanTag').attr('id'),
 			message: $m.val()
 		}
@@ -32,7 +35,7 @@ $(function() {
 		// Use AJAX to add the new message to our db
 		$.ajax({
 			method: "POST",
-			url: "/api/groupchats/:id",
+			url: "/api/messages",
 			data: message
 		}).then(
 			function(jsonMessage) {
@@ -49,12 +52,13 @@ $(function() {
 		)
 	});
 
-	$form.submit(function(){
-		socket.emit('chat message', (`${$('.spanTag').attr('id')}: ${$m.val()}`));
+	$form.submit(function() {
+		socket.emit('send to server', (`${$('.spanTag').attr('id')}: ${$m.val()}`));
 		$m.val('');
 		return false;
 	});
-	socket.on('chat message', function(msg){
+	socket.on('send to client', function(msg) {
+		console.log(msg);
 		$messages.append($('<li>').text(msg));
 	});
 
