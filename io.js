@@ -1,19 +1,13 @@
 var io = require('socket.io')();
 
+// code below runs when a user enters a chatroom
 io.on('connection', function(socket) {
-	// console.log('a user connected');
-	// socket.on('disconnect', function() {
-	// 	console.log('user disconnected');
-	// });
-	socket.on('send to server', function(msg) {
-		// console.log('message: ' + msg);
-		io.emit('send to client', msg);
+	socket.on('data', function(msg) {
+		// parse json and send back appropriate info
+		// emits to a chat named whatever the id of the chatroom is
+		var res = `${msg.username}: ${msg.message}`;
+		io.emit(`${msg.chatId}`, res);
 	});
 });
-// 
-// io.on('connection', function(socket){
-//   socket.join('goons');
-// 	console.log('joined goons');
-// });
 
 module.exports = io;

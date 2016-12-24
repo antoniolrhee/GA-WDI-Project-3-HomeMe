@@ -4,6 +4,7 @@ $(function() {
 	$form = $('#form');
 	$messages = $('#messages');
 
+	// brings in code from the server side (io.js)
 	var socket = io();
 
 	// Grab all messages from our db
@@ -12,7 +13,8 @@ $(function() {
     url: "/api/messages"
   }).then(
     function(jsonMessages) {
-      // Iterate through our array of json messages
+      // Iterate through array of json messages
+			// If a jsonMessage belongsTo attr matches the url substring, messages will be appended to the chatbox
 			jsonMessages.forEach(function(jsonMessage) {
 				if(jsonMessage.belongsTo == window.location.pathname.slice(12)) {
 					// Create an html element for the single message
@@ -32,7 +34,8 @@ $(function() {
 			message: $m.val()
 		}
 
-		// Use AJAX to add the new message to our db
+		// Use AJAX to add the new message to /api/messages
+		// data: message is defined above in $form submit
 		$.ajax({
 			method: "POST",
 			url: "/api/messages",
@@ -42,7 +45,7 @@ $(function() {
 				console.log("Success: ", jsonMessage);
 
 				// Clear the form
-				$m.val("");
+				$m.val('');
 
 				return jsonMessage;
 			},
@@ -53,13 +56,21 @@ $(function() {
 	});
 
 	$form.submit(function() {
-		socket.emit('send to server', (`${$('.spanTag').attr('id')}: ${$m.val()}`));
+		// send a json object to server side
+		var data = {
+			username: $('.spanTag').attr('id'),
+			message: $m.val(),
+			chatId: window.location.pathname.slice(12)
+		}
+		// socket.emit sends data to the server side (io.js)
+		socket.emit('data', data);
 		$m.val('');
 		return false;
 	});
-	socket.on('send to client', function(msg) {
-		console.log(msg);
-		$messages.append($('<li>').text(msg));
+	// receives an emit from the server side, url pathname must match the emit source, in this case the chatroom's id
+	socket.on(`${window.location.pathname.slice(12)}`, function(res) {
+		console.log(res);
+		$messages.append($('<li>').text(res));
 	});
 
 // end of document.ready function
