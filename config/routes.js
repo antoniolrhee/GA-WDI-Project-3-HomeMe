@@ -13,7 +13,7 @@ var api_listingsController = require('../controllers/api_listings');
 
 function authenticatedUser(req, res, next) {
   // if user authenticated, continue to next execution
-  if(req.isAuthenticated()) return next();
+  if (req.isAuthenticated()) return next();
   // otherwise always redirect to root route
   res.redirect('/');
 }

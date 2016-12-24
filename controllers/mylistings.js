@@ -19,7 +19,7 @@ function addFaves(req, res, next) {
     .populate('favorites')
   //actually execute query, .populate does not run until .exec
     .exec(function(err, user) {
-      if(err) throw err;
+      if (err) throw err;
 
       res.json(user);
     });

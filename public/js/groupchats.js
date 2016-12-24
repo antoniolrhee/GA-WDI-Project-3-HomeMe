@@ -29,7 +29,7 @@ $(document).ready(function() {
       chatName: $('#chatroomName').val().replace(/\s/g, ''),
       chatPassword: $('#chatroomPassword').val().replace(/\s/g, '')
     }
-    if($('#chatroomName').val().replace(/\s/g, '') == "" || $('#chatroomPassword').val().replace(/\s/g, '') == "") {
+    if ($('#chatroomName').val().replace(/\s/g, '') == "" || $('#chatroomPassword').val().replace(/\s/g, '') == "") {
       alert('Missing required fields');
     } else {
       // Use AJAX to add the new groupchat to our db

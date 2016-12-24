@@ -16,7 +16,7 @@ $(function() {
       // Iterate through array of json messages
 			// If a jsonMessage belongsTo attr matches the url substring, messages will be appended to the chatbox
 			jsonMessages.forEach(function(jsonMessage) {
-				if(jsonMessage.belongsTo == window.location.pathname.slice(12)) {
+				if (jsonMessage.belongsTo == window.location.pathname.slice(12)) {
 					// Create an html element for the single message
 					$messages.append($('<li>').text(`${jsonMessage.username}: ${jsonMessage.message}`));
 				}

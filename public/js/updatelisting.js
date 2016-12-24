@@ -2,7 +2,7 @@
   document.getElementById("file-input").onchange = () => {
     var files = document.getElementById('file-input').files;
     var file = files[0];
-    if(file == null){
+    if (file == null){
       return alert('No file selected.');
     }
     getSignedRequest(file);
@@ -12,8 +12,8 @@ function getSignedRequest(file){
   var xhr = new XMLHttpRequest();
   xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
   xhr.onreadystatechange = () => {
-    if(xhr.readyState === 4){
-      if(xhr.status === 200){
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
         uploadFile(file, response.signedRequest, response.url);
       }
@@ -29,8 +29,8 @@ function uploadFile(file, signedRequest, url){
   xhr.open('PUT', signedRequest);
   xhr.onreadystatechange = () => {
     console.log('hi')
-    if(xhr.readyState === 4){
-      if(xhr.status === 200){
+    if (xhr.readyState === 4){
+      if (xhr.status === 200){
         document.getElementById('preview').src = url;
         document.getElementById('imageurl').value = url;
       }
