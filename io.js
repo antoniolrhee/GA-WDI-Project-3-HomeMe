@@ -10,5 +10,10 @@ io.on('connection', function(socket) {
 		io.emit('send to client', msg);
 	});
 });
+// 
+// io.on('connection', function(socket){
+//   socket.join('goons');
+// 	console.log('joined goons');
+// });
 
 module.exports = io;
